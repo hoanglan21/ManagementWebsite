@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/css/add_assumption.css">
+<script src="js/edit_assumption.js"></script>
+
+</head>
+
+<body>
+	<div class="container add-project-assumption-title">
+		<div class="row">
+			<h1>Edit project assumptions</h1>
+		</div>
+	</div>
+
+	<div class="container add-project-assumption-label">
+		<div class="row">
+			<h2>{{project_name}}</h2>
+			<h3>List of assumptions</h3>
+		</div>
+	</div>
+	<div class="container project-assumption-information ">
+		<div class="row project-assumption-information-table">
+			<table>
+				<thead>
+					<th>Description</th>
+					<th>Category</th>
+					<th>Reason</th>
+					<th>Action</th>
+				</thead>
+				<tr ng-repeat="assumption in assumptions"
+					ng-click="openEditModal(assumption.categories,assumption.assumptionId)"
+					onclick="openEditModal(event,this)"
+					>
+					<td id="description_child">{{assumption.description}}</td>
+					<td id="category_child"><span
+						ng-repeat="category in assumption.categories"
+						data-category-id="{{category.categoryId}}"
+						data-category-name="{{category.name}}">{{category.name}} </span></td>
+					<td id="reason_child">{{assumption.reason}}</td>
+					<td id="delete_child" title="Delete selected row" ng-click="deleteAssumption(assumption)"><i
+						class="fa fa-trash" aria-hidden="true" ></i></td>
+				</tr>
+
+			</table>
+		</div>
+
+		<div class="row">
+			<button id="new-assumption" ng-click="createAssumption()">new
+				assumption</button>
+		</div>
+
+		<div class="row">
+			<a href="project/details/{{project_id}}">Done</a>
+		</div>
+	</div>
+
+	<div class="modal-box-add-assumption">
+		<div class="container modal-box-add-assumption-content">
+			<div class="row">
+				<span class="close">&times;</span>
+			</div>
+			<div class="row">
+				<h2>Add new assumption</h2>
+			</div>
+			<div class="row">
+				<form ng-submit="submitAssumption()">
+					<div class="col-md-6 add-assumption-form">
+						<div class="row">
+							<div class="col-md-3">
+								<span>Description</span>
+							</div>
+							<div class="col-md-8">
+								<textarea name="description" id="description-textarea" cols="25"
+									rows="4" ng-model="assumptionForm.description"></textarea>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-3">
+								<span>Category</span>
+							</div>
+							<input type="hidden" id="value-list-id-category"
+								ng-model="assumptionForm.categories">
+							<div class="col-md-9 category-block-list"></div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-3">
+								<span>Reason</span>
+							</div>
+							<div class="col-md-8">
+								<textarea name="reason" id="reason-textarea" cols="25" rows="3"
+									ng-model="assumptionForm.reason"></textarea>
+							</div>
+						</div>
+
+						<div class="row">
+							<input type="submit" value="Add">
+						</div>
+					</div>
+				</form>
+				<div class="col-md-6 add-category-box">
+					<div class="row">
+						<span>List of categories</span>
+					</div>
+					<div class="row">
+						<div class="select-category-block">
+							<div ng-repeat="categoriess in categoriesAssumption"
+								data-block-id="{{categoriess.categoryId}}"
+								class="category-block" onclick="addCategoryAdd(this)">
+								<span>{{categoriess.name}}</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-box-edit-assumption">
+		<div class="container modal-box-edit-assumption-content">
+			<div class="row">
+				<span class="close">&times;</span>
+			</div>
+			<div class="row">
+				<h2>Edit assumption</h2>
+			</div>
+			<div class="row">
+				<form ng-submit="editAssumption()">
+					<div class="col-md-6 edit-assumption-form">
+						<div class="row">
+							<div class="col-md-3">
+								<span>Description</span>
+							</div>
+							<div class="col-md-8">
+								<textarea name="description" id="description-textarea"
+									ng-model="editRecord.description" cols="25" rows="4"></textarea>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-3">
+								<span>Category</span>
+							</div>
+							<div class="col-md-9 category-block-list">
+								<div class="category-block">
+									<span><i class="fa fa-times"
+										onclick="closeCategoryEdit(this)" aria-hidden="true"></i></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-3">
+								<span>Reason</span>
+							</div>
+							<div class="col-md-8">
+								<textarea name="reason" id="reason-textarea"
+									ng-model="editRecord.reason" cols="25" rows="3"></textarea>
+							</div>
+						</div>
+
+						<div class="row">
+							<input type="submit" value="Edit">
+						</div>
+					</div>
+				</form>
+				<div class="col-md-6 add-category-box">
+					<div class="row">
+						<span>List of categories</span>
+					</div>
+					<div class="row">
+						<div class="select-category-block">
+							<div ng-repeat="categoriess in categoriesAssumptionEdit"
+								data-block-id="{{categoriess.categoryId}}"
+								class="category-block" onclick="addCategoryEdit(this)">
+								<span>{{categoriess.name}}</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

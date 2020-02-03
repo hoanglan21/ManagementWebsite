@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/add_project.css">
+ 
+</head>
+
+<body>
+	
+    <div class="container add-project-title">
+        <div class="row">
+            <h1>Create project</h1>
+        </div>
+    </div>
+
+    <div class="container add-project-information">
+            <div class="row add-project-name">
+                <div class="col-md-2">
+                    <span>Name</span>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" name="project_name" ng-model="project_name" placeholder="Type project name here">
+                </div>
+            </div>
+
+            <div class="row add-project-description">
+                <div class="col-md-2">
+                    <span>Description</span>
+                </div>
+                <div class="col-md-8">
+                    <textarea name="project_description" ng-model="project_description" cols="30" rows="4"></textarea>
+                </div>
+            </div>
+
+            <div class="row add-project-customer">
+                <div class="col-md-2">
+                    <span>Customer</span>
+                </div>
+                <div class="col-md-8">
+                    <input list="customer_name" ng-model="customer_name" ng-change="setCustomerId()">
+                    <datalist id="customer_name">
+                        <option ng-repeat="customer in customers"  value="{{customer.name}}" data-cus-id="{{customer.customerId}}">
+                    </datalist>
+                    <i ng-click="addCustomerModal()" class="fa fa-plus" aria-hidden="true" id="create-new-customer"></i>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <span>Technology</span>
+                </div>
+                <div class="col-md-8">
+                    <div class="list-block"  id="list-block-technology">
+                        <div class="block" ng-repeat="technology in technologiesForm" data-block-id="{{technology.technologyId}}"> 
+                        	<p>{{technology.name}}</p> 
+                        	<i class="fa fa-times" ng-click="deleteTech(technology)" aria-hidden="true"></i> 
+                        </div>
+                    </div>
+                    <i ng-click='addTechModal()' class="fa fa-plus" id="add-technology-btn" aria-hidden="true"></i>
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col-md-2">
+                    <span>Scope</span>
+                </div>
+                <div class="col-md-8">
+                    <div class="list-block" id="list-block-scope">
+                     <div class="block" ng-repeat="scope in scopesForm" data-block-id="{{scope.scopeId}}"> 
+                        	<p>{{scope.name}}</p> 
+                        	<i ng-click="deleteScope(scope)" class="fa fa-times" aria-hidden="true"></i> 
+                        </div>  
+                    </div>
+                    <i ng-click='addScopeModal()' class="fa fa-plus" id="add-scope-btn" aria-hidden="true"></i>
+                </div>
+            </div>
+
+            <div class="row add-project-complexity">
+                <div class="col-md-2">
+                    <span>Complexity</span>
+                </div>
+                <div class="col-md-8">
+                    <select name="complexity" ng-model="project_complexity">
+ 
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row add-project-size">
+                <div class="col-md-2">
+                    <span>Size (MM)</span>
+                </div>
+                <div class="col-md-8">
+                    <input type="number" name="size" ng-model="project_size">
+                </div>
+            </div>
+
+            <div class="row add-project-warranty">
+                <div class="col-md-2">
+                    <span>Warranty (Months)</span>
+                </div>
+                <div class="col-md-8">
+                    <input type="number" name="warranty" ng-model="project_warranty">
+                </div>
+            </div>
+
+
+            <div class="row add-project-button" ng-click = "addProjectSubmit()">
+                <div class="col-md-7">
+                    <input type="submit" value="Create">
+                </div>
+
+            </div>
+
+    </div>
+
+    <div ng-init="addTechModalBox=true" ng-hide='addTechModalBox' class="modal-box-add-technology">
+        <div class="container modal-box-add-technology-content">
+            <div class="row">
+                <span ng-click='closeTechModal()' class="close">&times;</span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-9">
+                    <input ng-keyup=searchTechnology($event) type="text" placeholder="Type technology name" ng-model="search_technology" id="search-technology-input">
+                </div>
+            </div>
+
+            <div class="row">
+                <h3>List of technologies</h3>
+            </div>
+
+            <div class="row">
+                <ul>
+                    <li ng-click="selectTech($event, technology)" ng-repeat="technology in technologies">{{technology.name}}</li>
+                </ul>
+            </div>
+
+            <div class="row">
+            	<div class="col-md-8">
+                    <input type="text" placeholder="New technology" ng-model="new_technology">
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" value="Create" id="add-new-technology" ng-click="addNewTechnology()">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-init="addScopeModalBox=true" ng-hide="addScopeModalBox" class="modal-box-add-scope">
+        <div class="container modal-box-add-scope-content">
+            <div class="row">
+                <span ng-click='closeScopeModal()' class="close">&times;</span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-9">
+                    <input ng-keyup="searchScope($event)" type="text" placeholder="Type scope name" id = "search-scope-input" ng-model="search_scope">
+                </div>
+            </div>
+
+            <div class="row">
+                <h3>List of scopes</h3>
+            </div>
+
+            <div class="row">
+                <ul>
+                    <li ng-click="selectScope($event, scope)" ng-repeat="scope in scopes" onclick="selectLi(this)" data-scope-id="{{scope.scopeId}}">{{scope.name}}</li>
+                </ul>
+            </div>
+            <div class="row">
+           		 <div class="col-md-8">
+                    <input type="text" placeholder="New scope" ng-model="new_scope">
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" value="Create" id="add-new-scope" ng-click="addNewScope()">
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    
+    <div ng-init="addCustomerModalBox=true" ng-hide="addCustomerModalBox" class="modal-box-add-customer">
+        <div class="container modal-box-add-customer-content">
+            <div class="row">
+                <span ng-click="closeCustomerModal()" class="close">&times;</span>
+            </div>
+
+			<div class="row">
+                <h3>Create new customer</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                   <span>Name</span>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" ng-model="new_customer_name">
+                </div>
+            </div>
+
+            <div class="row">
+       			<div class="col-md-3">
+                   <span>Phone</span>
+                </div>
+                <div class="col-md-8">
+                    <input type="number" ng-model="customer_phone">
+                </div>
+            </div>
+            
+            <div class="row">
+       			<div class="col-md-3">
+                   <span>Email</span>
+                </div>
+                <div class="col-md-8">
+                   <form name="personForm">
+                   <input name="email" type="email" ng-pattern="/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/" ng-model="customer_email" ng-submit="validEmail()">
+                    <span claas="ng-hide" style="color:Red" ng-show="personForm.email.$dirty&&personForm.email.$error.pattern">Please Enter Valid Email</span>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="row">
+       			<div class="col-md-3">
+                   <span>Address</span>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" ng-model="customer_address">
+                </div>
+            </div>
+            
+            <div class="row">
+           		 <div class="col-md-7">
+                   
+                </div>
+                <div class="col-md-4">
+                    <button ng-click="addNewCustomer()" id="add-new-customer">Create</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>    
+</body>
+
+</html>

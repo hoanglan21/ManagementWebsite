@@ -1,0 +1,191 @@
+body {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: aliceblue
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+
+
+i {
+    cursor: pointer;
+}
+
+ul {
+    min-height: 182px;
+}
+
+ul li {
+    padding: 5px 0px;
+}
+
+.container .row {
+    min-height: 45px;
+}
+
+.main-navibar {
+	background-color:#b2b266;
+	padding: 3px 30px;
+}
+
+.main-navibar .navi-home {
+	padding: 5px;
+	color:black;
+}
+
+.main-navibar .navi-home:hover {
+	text-decoration:none;
+	color:black;
+	background-color:#666633;
+}
+
+.add-project-constraint-title {
+    padding: 4%;
+    padding-bottom: 0;
+}
+
+.add-project-constraint-title h1 {
+    text-align: center;
+    font-size: 60px;
+}
+
+.add-project-constraint-label h2 {
+    font-size: 45px;
+}
+
+.add-project-constraint-label h3 {
+    font-size: 25px;
+}
+
+.project-constraint-information table {
+    width: 100%;
+}
+
+.project-constraint-information table tbody tr:hover {
+    background-color: #1a8cff;
+    cursor: pointer;
+}
+
+.project-constraint-information table tbody tr:hover #delete_child {
+    background-color: white;
+}
+
+.project-constraint-information table tbody tr #delete_child:hover {
+    background-color: gray;
+}
+
+.project-constraint-information button {
+    font-size: 18px;
+    float: right;
+    margin-right: 5%;
+    margin-top: 15px;
+}
+
+.project-constraint-information a {
+    color: black;
+    background-color: cadetblue;
+    padding: 5px 25px;
+    float: right;
+    margin-top: 15px;
+    margin-right: 5%;
+}
+
+.project-constraint-information a:hover {
+    text-decoration: none;
+    background-color: darkcyan;
+}
+
+
+.modal-box-add-constraint {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(1,1,1,0.4);
+    display: none;
+}
+
+.modal-box-add-constraint .modal-box-add-constraint-content .close {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.modal-box-add-constraint .modal-box-add-constraint-content h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 50px;
+}
+
+.modal-box-add-constraint .modal-box-add-constraint-content {
+    margin: auto;
+    background-color: white;
+    width: 30%;
+    margin-top: 12%;
+    padding: 56px;
+    padding-top: 30px;
+}
+
+.modal-box-add-constraint .modal-box-add-constraint-content .add-constraint-form textarea {
+    width: 100%;
+}
+
+.modal-box-add-constraint .modal-box-add-constraint-content .add-constraint-form input {
+    font-size: 16px;
+    float: right;
+    margin-right: 11%;
+    margin-top: 10px;
+}
+
+
+
+
+.modal-box-edit-constraint {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(1,1,1,0.4);
+    display: none;
+}
+
+.modal-box-edit-constraint .modal-box-edit-constraint-content .close {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.modal-box-edit-constraint .modal-box-edit-constraint-content h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 50px;
+}
+
+.modal-box-edit-constraint .modal-box-edit-constraint-content {
+    margin: auto;
+    background-color: white;
+    width: 30%;
+    margin-top: 12%;
+    padding: 56px;
+    padding-top: 30px;
+}
+
+.modal-box-edit-constraint .modal-box-edit-constraint-content .edit-constraint-form textarea {
+    width: 100%;
+}
+
+.modal-box-edit-constraint .modal-box-edit-constraint-content .edit-constraint-form input {
+    font-size: 16px;
+    float: right;
+    margin-right: 11%;
+    margin-top: 10px;
+}

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/projectDetails.css?v=1.0.0">
+</head>
+
+<body>
+
+    <h1 class="headname">{{project.name}}</h1>
+
+    <div class="container project-information">
+        <div class="row">
+            <div class="col-md-2">
+                <h3>Customer</h3>
+            </div>
+            <div class="col-md-8">
+                <p>{{project.customer.name}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <h3> Technology</h3>
+            </div>
+            <div class="col-md-8">
+                <p><span ng-repeat="technology in project.technologies">{{technology.name}} </span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <h3> Complexity</h3>
+            </div>
+            <div class="col-md-8">
+                <p>{{project.complexity}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <h3> Scope </h3>
+            </div>
+            <div class="col-md-8">
+                <p><span ng-repeat="scope in project.scopes">{{scope.name}} </span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <h3> Warranty</h3>
+            </div>
+            <div class="col-md-8">
+                <p>{{project.warranty}} months</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <h3> Size</h3>
+            </div>
+            <div class="col-md-8">
+                <p>{{project.size}} man-month</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <h3> Description</h3>
+            </div>
+            <div class="col-md-8">
+                <p>{{project.description}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <h3> Attach file</h3>
+            </div>
+            <div class="col-md-8">
+                <p>asdf</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <a href="project/edit/{{project.projectId}}">Edit</a>
+            </div>
+        </div>
+        
+        
+        <div class="row">
+            <div class="col-md-2">
+                <h3> Assumption</h3>
+            </div>
+            
+        </div>
+        <div class="container project-assumption-information">
+            <div class="row">
+                <table>
+                	<col width="10%">
+                    <thead>
+                        <th>Index</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Reason</th>
+          
+                    </thead>
+                    <tr ng-repeat="assumption in project.assumptions">
+                        <td ng-click="openEditAssumptionModal(assumption)">{{$index + 1}}</td>
+                        <td ng-click="openEditAssumptionModal(assumption)" id="description_child">{{assumption.description}}</td>
+						<td ng-click="openEditAssumptionModal(assumption)" id="category_child"><span
+						ng-repeat="category in assumption.categories"
+						data-category-id="{{category.categoryId}}"
+						data-category-name="{{category.name}}">{{category.name}} </span></td>
+						<td ng-click="openEditAssumptionModal(assumption)" id="reason_child">{{assumption.reason}}</td>
+						<td ng-click="deleteAssumption(assumption)" id="delete_child" title="Delete selected row"><i
+						class="fa fa-trash" aria-hidden="true" ></i></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row">
+                <button id="new-assumption" ng-click="createAssumption()">new
+				assumption</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <h3>Constraints</h3>
+            </div>
+            
+            
+        </div>
+
+        <div class="container project-constraint-information">
+            <div class="row project-constraint-information-table">
+            <table>
+            	<col width="10%">
+            	<col width="87%">
+                <thead>
+                	<th>Index</th>
+                    <th>Description</th>
+                </thead>
+                <tr ng-repeat="constraint in project.constraints">
+                	<td ng-click="openEditConstraintModal(constraint)">{{$index + 1}}</td>
+                    <td ng-click="openEditConstraintModal(constraint)" id="description_child" data-constraint-id="{{constraint.constraintId}}">{{constraint.description}}</td>
+                    <td ng-click="deleteConstraint(constraint.constraintId)" id="delete_child" title="Delete selected row">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="row">
+            <button id="new-constraint" ng-click="openAddConstraintModal()">new constraint</button>
+        </div>
+        </div>
+    </div>
+    
+    <div class="modal-box-add-assumption"  ng-init="addAssumptionBox=true" ng-hide="addAssumptionBox">
+		<div class="container modal-box-add-assumption-content">
+			<div class="row">
+				<span class="close" ng-click="closeAddAssumptionBox()">&times;</span>
+			</div>
+			<div class="row">
+				<h2>Add new assumption</h2>
+			</div>
+			<div class="row">
+				<form ng-submit="submitAssumption()">
+					<div class="col-md-6 add-assumption-form">
+						<div class="row">
+							<div class="col-md-3">
+								<span>Description</span>
+							</div>
+							<div class="col-md-8">
+								<textarea name="description" id="description-textarea" cols="25"
+									rows="4" ng-model="assumptionForm.description"></textarea>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-3">
+								<span>Category</span>
+							</div>
+							<div class="col-md-9 category-block-list">
+								<div ng-repeat="category in assumptionForm.categories" class="category-block" data-block-id="{{category.categoryID}}" > 
+								<span>{{category.name}}</span> 
+								<i class="fa fa-times" ng-click="closeCategoryAdd(category)" aria-hidden="true"></i> 
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-3">
+								<span>Reason</span>
+							</div>
+							
+							<div class="col-md-8">
+								<textarea name="reason" id="reason-textarea" cols="25" rows="3"
+									ng-model="assumptionForm.reason"></textarea>
+							</div>
+						</div>
+
+						<div class="row">
+							<input type="submit" value="Add">
+						</div>
+					</div>
+				</form>
+				<div class="col-md-6 add-category-box">
+					<div class="row">
+						<span>List of categories</span>
+					</div>
+					<div class="row">
+						<div class="select-category-block">
+							<div ng-repeat="category in categoriesAssumption"
+								class="category-block" ng-click="addCategoryAdd(category)">
+								<span>{{category.name}}</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-box-edit-assumption" ng-init="editAssumptionBox=true" ng-hide="editAssumptionBox">
+		<div class="container modal-box-edit-assumption-content">
+			<div class="row">
+				<span class="close" ng-click="closeEditAssumptionModal()">&times;</span>
+			</div>
+			<div class="row">
+				<h2>Edit assumption</h2>
+			</div>
+			<div class="row">
+				<form ng-submit="editAssumption()">
+					<div class="col-md-6 edit-assumption-form">
+						<div class="row">
+							<div class="col-md-3">
+								<span>Description</span>
+							</div>
+							<div class="col-md-8">
+								<textarea name="description" id="description-textarea"
+									ng-model="editRecord.description" cols="25" rows="4"></textarea>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-3">
+								<span>Category</span>
+							</div>
+							<div class="col-md-9 category-block-list">
+								<div ng-repeat="category in editRecord.categories" class="category-block" data-block-id="{{category.categoryID}}" > 
+									<span>{{category.name}}</span> 
+									<i class="fa fa-times" ng-click="closeCategoryEdit(category)" aria-hidden="true"></i> 
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-3">
+								<span>Reason</span>
+							</div>
+							<div class="col-md-8">
+								<textarea name="reason" id="reason-textarea"
+									ng-model="editRecord.reason" cols="25" rows="3"></textarea>
+							</div>
+						</div>
+
+						<div class="row">
+							<input type="submit" value="Edit">
+						</div>
+					</div>
+				</form>
+				<div class="col-md-6 add-category-box">
+					<div class="row">
+						<span>List of categories</span>
+					</div>
+					<div class="row">
+						<div class="select-category-block">
+							<div ng-repeat="category in categoriesAssumptionEdit"
+								class="category-block" ng-click="addCategoryEdit(category)">
+								<span>{{category.name}}</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+    
+    <div class="modal-box-add-constraint" ng-init="addConstraintBox=true" ng-hide="addConstraintBox">
+        <div class="container modal-box-add-constraint-content">
+            <div class="row">
+                <span class="close" ng-click="closeAddConstraintModal()">&times;</span>
+            </div>
+            <div class="row">
+                <h2>Add new constraint</h2>
+            </div>
+            <div class="row">
+                <div class="add-constraint-form">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span>Description</span>
+                        </div>
+                        <div class="col-md-8">
+                        	
+                            <textarea name="description" ng-model="constraint_description" id="description-textarea" cols="25" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input id="add-constraint-btn" ng-click="addConstraintBtn()" type="submit" value="Add">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-box-edit-constraint" ng-init="editConstraintBox=true" ng-hide="editConstraintBox">
+        <div class="container modal-box-edit-constraint-content">
+            <div class="row">
+                <span class="close" ng-click="closeEditConstraintModal()">&times;</span>
+            </div>
+            <div class="row">
+                <h2>Edit constraint</h2>
+            </div>
+            <div class="row">
+                <div class="edit-constraint-form">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span>Description</span>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea name="description" ng-model="editConstraintData.description" cols="25" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input id="edit-constraint-btn" ng-click="editConstraintBtn()" type="submit" value="Edit">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>

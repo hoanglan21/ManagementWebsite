@@ -1,0 +1,92 @@
+
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+
+	<div class="container home-title">
+		<div class="row">
+			<h1>Project Management</h1>
+		</div>
+	</div>
+
+	<div class="container home-add-project">
+		<div class="row">
+			<a href="/project/add"> <i class="fa fa-plus-circle"
+				aria-hidden="true"></i>
+			</a>
+		</div>
+	</div>
+
+	<div class="container home-project-list">
+		<div class="row project-list-search">
+
+			<div class="col-md-4 search-name">
+				<input type="text" name="project_name"
+					placeholder="Type project name" ng-model="search_name" />
+			</div>
+			<div class="col-md-3 search-technology">
+				<select name="project_technology" ng-model="search_technology">
+					<option value="" disabled selected>Select technology</option>
+					<option value="0">All technology</option>
+					<option ng-repeat="technology in technologies"
+						value="{{technology.technologyId}}">{{technology.name}}</option>
+				</select>
+			</div>
+			<div class="col-md-3 search-scope">
+				<select name="project_scope" ng-model="search_scope">
+					<option value="" disabled selected>Select scope</option>
+					<option value="0">All scope</option>
+					<option ng-repeat="scope in scopes" value="{{scope.scopeId}}">{{scope.name}}</option>
+				</select>
+			</div>
+			<div class="col-md-2 search-button">
+				<input type="submit" value="Search" ng-click="clickSearch()">
+			</div>
+
+		</div>
+		<div class="row project-list-table">
+			<table>
+				<tr>
+					<th>Name</th>
+					<th>Customer</th>
+					<th>Scope</th>
+
+					<th>Technology</th>
+					<th>Complexity</th>
+					<th>Action</th>
+				</tr>
+
+				<tr ng-repeat="project in projects">
+					<td><a
+						href="project/details/{{project.projectId}}">{{
+							project.name }}</a></td>
+					<td><a
+						href="/customer/{{project.customer.customerId}}">{{
+							project.customer.name}}</a></td>
+					<td><span ng-repeat="s in project.scopes">{{s.name}} </span></td>
+					<td><span ng-repeat="t in project.technologies">{{t.name}}
+					</span></td>
+					<td>{{project.complexity}}</td>
+
+					<td><i class="fa fa-trash"
+						ng-click="deleteProject(project.projectId)" aria-hidden="true"></i></td>
+				</tr>
+
+
+
+			</table>
+
+		</div>
+
+	</div>
+
+	<div class="container table-page-number"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+</div>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="/css/customer.css">
+
+</head>
+
+<body>
+	
+    <h1 class="headname">Customer Details</h1>
+
+    <div class="container customer-info">
+        <div class="row">
+            <div class="col-md-2">
+                <h3>Name</h3>
+            </div>
+            <div class="col-md-8" id="cus-name">
+                <p>{{customer.name}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <h3>Phone</h3>
+            </div>
+            <div class="col-md-8">
+                <p>{{customer.phone}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <h3>Email</h3>
+            </div>
+            <div class="col-md-2">
+                <p>{{customer.email}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <h3>Address</h3>
+            </div>
+            <div class="col-md-8">
+                <p>{{customer.address}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-4" >
+                <div class="cus-change" >
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <p ng-click="openEditCustomerModal()" style="display: inline-block">Edit</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-box-add-cust" ng-init="editCustomerModalBox=true" ng-hide="editCustomerModalBox">
+            <div class="modal-box-add-cust-content">
+                <div class="row">
+                    <span class="close" ng-click="closeEditCustomerModal()">&times;</span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>Name</p>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" id="name" ng-model="customerForm.name")>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>Phone</p>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" ng-model="customerForm.phone">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>Email</p>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" ng-model="customerForm.email" ng-change="alertValidateEmail()">
+                        <span ng-bind="emailAlert"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>Address</p>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" ng-model="customerForm.address">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-9">
+                    </div>
+                    <div class="col-md-3">
+                        <button id="save-cus" ng-click="saveCustomerEditData()">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

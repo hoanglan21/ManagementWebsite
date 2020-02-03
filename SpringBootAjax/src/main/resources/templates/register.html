@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+
+<style>
+input {
+	width: 65%;
+}
+
+.main-navibar {
+	opacity: 0.9;
+	background-color: aliceblue;
+	padding: 3px 30px;
+	position: fixed;
+	width: 100%;
+}
+
+.main-navibar .navi-home {
+	padding: 5px;
+	color: black;
+	font-size: 20px;
+	float: left;
+}
+
+.main-navibar .navi-home:hover {
+	text-decoration: none;
+	color: black;
+	background-color: #c0c0c0;
+}
+
+.main-navibar .navi-login {
+	padding: 5px;
+	color:black;
+	font-size: 20px;
+	float:right
+}
+
+.main-navibar .navi-login:hover {
+	text-decoration:none;
+	color:black;
+	background-color:#c0c0c0;
+}
+</style>
+</head>
+
+<body>
+	<form class="form-horizontal"
+		style="padding: 100px 34%;">
+		<fieldset>
+			<div id="legend">
+				<legend class="">Register</legend>
+			</div>
+			<div class="control-group">
+				<!-- Username -->
+				<label class="control-label" for="username">Username</label>
+				<div class="controls">
+					<input type="text" id="username" ng-model="username" placeholder=""
+						class="input-xlarge">
+					<p class="help-block">Username can contain any letters or
+						numbers, without spaces</p>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<!-- E-mail -->
+				<label class="control-label" for="email">E-mail</label>
+				<div class="controls">
+					<input type="text" id="email" ng-model="email" placeholder=""
+						class="input-xlarge">
+					<p class="help-block">Please provide your E-mail</p>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<!-- Password-->
+				<label class="control-label" for="password">Password</label>
+				<div class="controls">
+					<input type="password" id="password" ng-model="password"  placeholder=""
+						class="input-xlarge">
+					<p class="help-block">Password should be at least 4 characters</p>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<!-- Password -->
+				<label class="control-label" for="password_confirm">Password
+					(Confirm)</label>
+				<div class="controls">
+					<input type="password" id="password_confirm" ng-model="repassword"
+						 placeholder="" class="input-xlarge">
+					<p class="help-block">Please confirm password</p>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<!-- Button -->
+				<div class="controls">
+					<button class="btn btn-success" ng-click="submitAccount()">Register</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</body>
+
+</html>

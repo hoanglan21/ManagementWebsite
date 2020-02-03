@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/add_constraint.css">
+    <script src="/js/add_constraint.js"></script>
+</head>
+
+<body>
+    <div class="container add-project-constraint-title">
+        <div class="row">
+            <h1>Edit project constraints</h1>
+        </div>
+    </div>
+
+    <div class="container add-project-constraint-label">
+        <div class="row">
+            <h2>{{project.name}}</h2>
+            <h3>List of constraints</h3>
+        </div>
+    </div>
+
+    <div class="container project-constraint-information">
+        <div class="row project-constraint-information-table">
+            <table>
+                <thead>
+                    <th>Description</th>
+                </thead>
+                <tr ng-repeat="constraint in project.constraints" onclick="openEditModal(event,this)">
+                    <td id="description_child" data-constraint-id="{{constraint.constraintId}}">{{constraint.description}}</td>
+                    <td ng-click="deleteConstraint(constraint.constraintId)" id="delete_child" title="Delete selected row">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="row">
+            <button id="new-constraint">new constraint</button>
+        </div>
+
+        <div class="row">
+            <a href="/project/details/{{project_id}}">Done</a>
+        </div>
+    </div>
+
+    <div class="modal-box-add-constraint">
+        <div class="container modal-box-add-constraint-content">
+            <div class="row">
+                <span class="close">&times;</span>
+            </div>
+            <div class="row">
+                <h2>Add new constraint</h2>
+            </div>
+            <div class="row">
+                <div class="add-constraint-form">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span>Description</span>
+                        </div>
+                        <div class="col-md-8">
+                        	
+                            <textarea name="description" ng-model="constraint_description" id="description-textarea" cols="25" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input id="add-constraint-btn" onclick="validateForm()" type="submit" value="Add">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-box-edit-constraint">
+        <div class="container modal-box-edit-constraint-content">
+            <div class="row">
+                <span class="close">&times;</span>
+            </div>
+            <div class="row">
+                <h2>Edit constraint</h2>
+            </div>
+            <div class="row">
+                <div class="edit-constraint-form">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span>Description</span>
+                        </div>
+                        <div class="col-md-8">
+                        	<input type="text" style="display:none" id="constraint_id">
+                            <textarea name="description" id="description-textarea" cols="25" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input id="edit-constraint-btn" onclick="validateFormEdit()" type="submit" value="Edit">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+body {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    background-image: url('/img/blue-sky.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    color:black;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center
+}
+
+a {
+    color: black;
+}
+
+i {
+    cursor: pointer;
+}
+
+.main-navibar .navi-login {
+	padding: 5px;
+	color:black;
+	font-size: 20px;
+	float:right
+}
+
+.main-navibar .navi-login:hover {
+	text-decoration:none;
+	color:black;
+	background-color:#c0c0c0;
+}
+
+.main-navibar {
+	opacity: 0.9;
+	background-color: aliceblue;
+	padding: 3px 30px;
+	position: fixed;
+    width: 100%;
+}
+
+.main-navibar .navi-home {
+	padding: 5px;
+}
+
+.main-navibar .navi-home:hover {
+	text-decoration:none;
+	color:black;
+	background-color:#c0c0c0;
+}
+
+.home-title {
+    padding: 4%;
+    padding-bottom: 0;
+}
+
+.home-title h1 {
+    text-align: center;
+    font-size: 60px;
+}
+
+.home-add-project {
+    text-align: right
+}
+
+.home-add-project i {
+    font-size: 60px;
+}
+
+.home-project-list {
+    margin: 50px auto;
+    margin-bottom: 0;
+}
+
+.home-project-list .project-list-search {
+    text-align: center;
+}
+
+.home-project-list .project-list-search .search-name input {
+    width: 90%;
+}
+
+.home-project-list .project-list-search .search-technology select {
+    padding: 4px;
+}
+
+.home-project-list .project-list-search .search-scope select {
+    padding: 4px;
+}
+
+.home-project-list .project-list-search .search-button input {
+    background: #8998CE;
+    padding: 2px 15px;
+    font-weight: bold;
+    border-radius: 12%;
+}
+
+.home-project-list .project-list-table {
+    min-height: 400px;
+}
+
+.home-project-list .project-list-table table {
+    width: 100%;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.table-page-number {
+    text-align: right;
+}
+
+.table-page-number span {
+    border: 1px solid black;
+    padding: 3px 10px;
+    margin: 0 5px;
+}
+
+.table-page-number span:hover {
+    background-color: #8998CE;
+    cursor: pointer;
+}
+
+.table-page-number #selected {
+    background-color: #8998CE;
+}

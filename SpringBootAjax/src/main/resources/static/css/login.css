@@ -1,0 +1,102 @@
+body {
+    background-image: url('/img/544750.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+}
+
+.main-navibar {
+	opacity: 0.9;
+	background-color: aliceblue;
+	padding: 3px 30px;
+	position: fixed;
+    width: 100%;
+}
+
+.main-navibar .navi-home {
+	padding: 5px;
+	color:black;
+	font-size: 20px;
+	float: left;
+}
+
+.main-navibar .navi-home:hover {
+	text-decoration:none;
+	color:black;
+	background-color:#c0c0c0;
+}
+
+.main-navibar .navi-login {
+	padding: 5px;
+	color:black;
+	font-size: 20px;
+	float:right
+}
+
+.main-navibar .navi-login:hover {
+	text-decoration:none;
+	color:black;
+	background-color:#c0c0c0;
+}
+
+.card {
+    width: 36%;
+    margin: auto;
+    margin-top: 250px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 370px;
+    border-radius: 2%;
+    padding: 3%;
+    padding-left: 5%;
+}
+
+.card .row {
+    margin: 0;
+}
+
+.card .form-row {
+    margin-top: 15px;
+}
+
+.card .form-row .form-row-icon {
+    background-color: gold;
+    color: black;
+    text-align: center;
+    font-size: 20px;
+    padding: 4px 0px;
+}
+
+.card .form-row .form-row-input {
+    padding: 0;
+}
+
+.card .form-row .form-row-input input {
+    padding: 3px;
+    font-size: 18px;
+    padding-left: 7%;
+    color: black;
+}
+
+.card button {
+    float: right;
+    margin-right: 3%;
+    margin-top: 30px;
+    font-size: 20px;
+    background: gold;
+    border: none;
+    color: black;
+    padding: 5px 20px;
+    border-radius: 7%;
+}
+
+.card button:hover {
+    background-color: white;
+}
+
+.card .sign-up-link {
+    margin-top: 30px;
+    font-size: 18px;
+}
